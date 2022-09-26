@@ -60,32 +60,31 @@ public class DemoDatabase {
              Statement statement = connection.createStatement()){
             //STUDENT
             System.out.println("STUDENT TABLE");
-            statement.execute(SqlStudent.dropTable());
-            statement.execute(SqlStudent.createTable());
-            statement.execute(SqlStudent.insertData());
-            ResultSet results = statement.executeQuery(SqlStudentCollege.allData());
+            //statement.execute(SqlStudent.dropTable());
+            //statement.execute(SqlStudent.createTable());
+            //statement.execute(SqlStudent.insertData());
+            ResultSet results = statement.executeQuery(SqlStudent.allData());
             printResults(results);
 
             //COLLEGE
             System.out.println();
             System.out.println("COLLEGE TABLE");
-            statement.execute(SqlCollege.dropTable());
-            statement.execute(SqlCollege.createTable());
-            statement.execute(SqlCollege.insertData());
+            //statement.execute(SqlCollege.dropTable());
+            //statement.execute(SqlCollege.createTable());
+            //statement.execute(SqlCollege.insertData());
             results = statement.executeQuery(SqlCollege.allData());
             printResults(results);
             //STUDENTCOLLEGE
             System.out.println();
             System.out.println("STUDENTCOLLEGE TABLE");
-            statement.execute(SqlStudentCollege.dropTable());
-            statement.execute(SqlStudentCollege.createTable());
-            statement.execute(SqlStudentCollege.insertData());
+            //statement.execute(SqlStudentCollege.dropTable());
+            //statement.execute(SqlStudentCollege.createTable());
+            //statement.execute(SqlStudentCollege.insertData());
             results = statement.executeQuery(SqlStudentCollege.allData());
             printResults(results);
             System.out.println("RESULTS AFTER MERGE");
             results = statement.executeQuery(SqlStudentCollege.studentCollegeInfo());
             printResults(results);
-            //System.out.println("Column count: "+ metadata.getColumnCount());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -47,7 +47,7 @@ public class SqlStudentCollege {
 
     public static String studentCollegeInfo(){
         return
-            "SELECT s.FirstName, s.LastName, c.Name "
+            "SELECT s.FirstName, s.LastName, c.School "
                 + "FROM Student s "
                 + "INNER JOIN StudentCollege sc ON s.Id = sc.StudentId "
                 + "INNER JOIN College c ON sc.CollegeId = c.Id ";
