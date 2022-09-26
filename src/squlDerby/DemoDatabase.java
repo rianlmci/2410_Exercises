@@ -3,59 +3,8 @@ package squlDerby;
 import java.sql.*;
 
 public class DemoDatabase {
-    //REFACTOR CODE TO HAVE ALL SQL STATEMENTS TO THEIR OWN CLASS
-
     // ==== TESTING AREA ==== //
     public static void main(String[] args){
-        /*OLD
-        //https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Connection.html
-        //https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/DriverManager.html
-
-        //v trying with resources, it can try *multiple* things with autocloseable at once
-        //https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Statement.html
-        //execute() tells db what to multiple runs do multiple things, executeQuery() asks the DB a question;
-        //FOR STUDENT
-        try (Connection connection = DriverManager.getConnection(SqlStudent.databaseURL());
-             Statement statement = connection.createStatement()){
-            //statement.execute(sqlStudent.dropTable());
-            //statement.execute(sqlStudent.createTable());
-            //statement.execute(sqlStudent.insertData());
-            ResultSet results = statement.executeQuery(SqlStudent.allData());
-            printResults(results);
-            //System.out.println("Column count: "+ metadata.getColumnCount());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println();
-
-        //FOR COLLEGE
-        try (Connection connection = DriverManager.getConnection(SqlCollege.databaseURL());
-             Statement statement = connection.createStatement()){
-            //statement.execute(SqlCollege.dropTable());
-            //statement.execute(SqlCollege.createTable());
-            //statement.execute(SqlCollege.insertData());
-            ResultSet results = statement.executeQuery(SqlCollege.allData());
-            printResults(results);
-            //System.out.println("Column count: "+ metadata.getColumnCount());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println();
-        //FOR STUDENTCOLLEGE
-        try (Connection connection = DriverManager.getConnection(SqlStudentCollege.databaseURL());
-             Statement statement = connection.createStatement()){
-            statement.execute(SqlStudentCollege.dropTable());
-            statement.execute(SqlStudentCollege.createTable());
-            statement.execute(SqlStudentCollege.insertData());
-            ResultSet results = statement.executeQuery(SqlStudentCollege.allData());
-            printResults(results);
-            results = statement.executeQuery(SqlStudentCollege.studentCollegeInfo());
-            printResults(results);
-            //System.out.println("Column count: "+ metadata.getColumnCount());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-         */
         try (Connection connection = DriverManager.getConnection(SqlStudentCollege.databaseURL());
              Statement statement = connection.createStatement()){
             //STUDENT
