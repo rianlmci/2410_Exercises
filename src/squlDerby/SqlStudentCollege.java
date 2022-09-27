@@ -5,8 +5,7 @@ package squlDerby;
  */
 public class SqlStudentCollege {
     /**
-     *
-     * @return
+     * @return command to create a StudentCollege table.
      */
     public static String createTable() {
         return "CREATE TABLE StudentCollege ("
@@ -16,16 +15,14 @@ public class SqlStudentCollege {
     }
 
     /**
-     *
-     * @return
+     * @return command to create a database URL.
      */
     public static String databaseURL() {
         return "jdbc:derby:FirstDatabase;create=true";
     }
 
     /**
-     *
-     * @return
+     * @return command to add student id and college id into a table.
      */
     public static String insertData() {
         return "INSERT INTO StudentCollege (StudentId, CollegeId) VALUES"
@@ -36,15 +33,23 @@ public class SqlStudentCollege {
                 + "(1237, 125)"
                 ;
     }
-
+    /**
+     * @return command to select all the data from the StudentCollege table.
+     */
     public static String allData() {
         return "SELECT * FROM StudentCollege";
     }
 
+    /**
+     * @return command to drop the StudentCollege table.
+     */
     public static String dropTable(){
         return "DROP TABLE StudentCollege";
     }
 
+    /**
+     * @return inner join command for joining information from student table and college table together.
+     */
     public static String studentCollegeInfo(){
         return
             "SELECT s.FirstName, s.LastName, c.School "

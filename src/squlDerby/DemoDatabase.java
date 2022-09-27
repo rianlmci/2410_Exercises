@@ -2,6 +2,9 @@ package squlDerby;
 
 import java.sql.*;
 
+/**
+ * A demo of a derby database, sql calls, and table manipulation.
+ */
 public class DemoDatabase {
     // ==== TESTING AREA ==== //
     public static void main(String[] args){
@@ -41,9 +44,9 @@ public class DemoDatabase {
     }
 
 
-    /*
-    * Demo how to access the header dynamically
-    * Still need columns need to be straight
+    /**
+    * Prints the database information.
+    * @throws SQLException for SQL related errors.
     */
     private static void printResults(ResultSet results) throws SQLException {
         /*

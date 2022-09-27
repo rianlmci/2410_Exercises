@@ -1,6 +1,13 @@
 package squlDerby;
 
+/**
+ * Sql commands for student.
+ */
 public class SqlStudent {
+
+    /**
+     * @return command to create a Student table.
+     */
     public static String createTable() {
         return "CREATE TABLE Student ("
                 + "ID int not null primary key"
@@ -13,10 +20,16 @@ public class SqlStudent {
                 + ")";
     }
 
+    /**
+     * @return command to create a database URL.
+     */
     public static String databaseURL() {
         return "jdbc:derby:FirstDatabase;create=true";
     }
 
+    /**
+     * @return command to add firstname, lastname, major, and grad year into the Student table.
+     */
     public static String insertData() {
         return "INSERT INTO Student (FirstName, LastName, Major, GradYear) VALUES"
                 + "('Don', 'Moor', 'EE', 2023),"
@@ -25,10 +38,16 @@ public class SqlStudent {
                 + "('Rob', 'Cole', 'CS', 2024)";
     }
 
+    /**
+     * @return command to select all the data from the Student table.
+     */
     public static String allData() {
         return "SELECT * FROM Student";
     }
 
+    /**
+     * @return command to drop the Student table.
+     */
     public static String dropTable(){
         return "DROP TABLE student";
     }
