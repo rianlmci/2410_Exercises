@@ -33,7 +33,7 @@ public class ArrayStack {
      * pops item off of the top of the stack and
      * @return string item from the top of the
      * stack we popped.
-     * @throws NoSuchElementException is array is empty
+     * @throws NoSuchElementException is array is empty.
      */
     public String pop(){
         //readability!
@@ -60,7 +60,7 @@ public class ArrayStack {
         return items[n-1];}
 
     /**
-     * @return number of items in the stack
+     * @return number of items in the stack.
      */
     public int size (){return n;}
 

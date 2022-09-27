@@ -2,6 +2,9 @@ package labQueue;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Demo of simple implementation of a queue structure in Java.
+ */
 public class LinkedQueue {
     private Node head;
     private Node tail;
@@ -17,17 +20,23 @@ public class LinkedQueue {
     }
 
     /**
-     *
      * @return number of elements in the queue
      */
     public int size() {
         return n;
     }
 
+    /**
+     * @return if the queue is empty or not as a true/false.
+     */
     public boolean isEmpty(){
         return n == 0;
     }
 
+    /**
+     * Adds an item to the back of the linked queue.
+     * @param item to be added to the back of the queue.
+     */
     public void enqueue(int item){
         Node newNode = new Node(item);
         if(isEmpty()){
@@ -56,6 +65,7 @@ public class LinkedQueue {
     /**
      *
      * @return Element at the front of the queue. FIFO.
+     * @throws NoSuchElementException if queue is empty!
      */
     public int dequeue(){
         if(isEmpty()){
