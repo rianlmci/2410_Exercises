@@ -6,17 +6,17 @@ import java.util.NoSuchElementException;
 /**
  * Demo of simple implementation of a queue structure in Java.
  */
-public class LinkedQueue<E> implements Iterable<E> {
+public class numberQueue implements Iterable<Integer> {
     private Node head;
     private Node tail;
     //elements in the queue
     private int n;
 
     private class Node{
-        E item;
+        int item;
         Node next;
 
-        Node(E value){
+        Node(int value){
             this.item = value;
         }
     }
@@ -39,7 +39,7 @@ public class LinkedQueue<E> implements Iterable<E> {
      * Adds an item to the back of the linked queue.
      * @param item to be added to the back of the queue.
      */
-    public void enqueue(E item){
+    public void enqueue(int item){
         Node newNode = new Node(item);
         if(isEmpty()){
             head = newNode;
@@ -57,7 +57,7 @@ public class LinkedQueue<E> implements Iterable<E> {
      * @return element at the front of the queue.
      * @throws NoSuchElementException if queue is empty!
      */
-    public E peek (){
+    public int peek (){
         if(isEmpty()){
             throw new NoSuchElementException("Can't peek at an empty queue");
         }
@@ -69,11 +69,11 @@ public class LinkedQueue<E> implements Iterable<E> {
      * @return Element at the front of the queue. FIFO.
      * @throws NoSuchElementException if queue is empty!
      */
-    public E dequeue(){
+    public int dequeue(){
         if(isEmpty()){
             throw new NoSuchElementException("Can't dequeue from an empty queue");
         }
-        E dequeuedItem = head.item;
+        int dequeuedItem = head.item;
         head = head.next;
         n--;
         //reassigns tail if completely empty at this point
@@ -87,18 +87,17 @@ public class LinkedQueue<E> implements Iterable<E> {
         StringBuilder sb = new StringBuilder();
         Node current = head;
         while(current != null){
-            sb.append(current.item + ", ");
+            sb.append(current.item + " ");
             current = current.next;
         }
-
-        return sb.substring(0, sb.length() - 2) + ".";
+        return sb.toString();
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public Iterator<Integer> iterator() {
         return new LinkedQueueIterator();
     }
-    private class LinkedQueueIterator implements Iterator<E> {
+    private class LinkedQueueIterator implements Iterator<Integer> {
         Node current = head;
         @Override
         public boolean hasNext() {
@@ -106,8 +105,8 @@ public class LinkedQueue<E> implements Iterable<E> {
         }
 
         @Override
-        public E next() {
-            E next = current.item;
+        public Integer next() {
+            int next = current.item;
             current = current.next;
             return next;
         }
@@ -115,23 +114,22 @@ public class LinkedQueue<E> implements Iterable<E> {
 
     // = = = TEST CLIENT = = = //
     public static void main(String [] args){
-        LinkedQueue <Float>myLinkedQueue = new LinkedQueue<>();
-        myLinkedQueue.enqueue(1.1f);
-        myLinkedQueue.enqueue(2.2f);
-        myLinkedQueue.enqueue(3.3f);
-        System.out.println("Starting queue: " + myLinkedQueue);
+        numberQueue myLinkedQueue = new numberQueue();
+        myLinkedQueue.enqueue(10);
+        myLinkedQueue.enqueue(20);
+        myLinkedQueue.enqueue(30);
+        System.out.println("Total queue: " + myLinkedQueue);
         System.out.println("Peek front: " + myLinkedQueue.peek());
-        System.out.println("Dequeuing/Removing... " + myLinkedQueue.dequeue() + " ");
-        System.out.println("Adding 4.4 and 5.5...");
-        myLinkedQueue.enqueue(4.4f);
-        myLinkedQueue.enqueue(5.5f);
-        System.out.println("Updated size of list: " + myLinkedQueue.size());
+        System.out.println("Dequeuing/Removing... " + myLinkedQueue.peek() + " ");
+        myLinkedQueue.dequeue();
+        System.out.println("New size of list:  " + myLinkedQueue.size());
         System.out.println("Updated queue: " + myLinkedQueue);
-
+        System.out.println("Updated head:  " + myLinkedQueue.head.item);
+        System.out.println("Updated tail:  " + myLinkedQueue.tail.item);
         System.out.println("Testing iterator... ");
 
-        for (float oneFloat: myLinkedQueue) {
-            System.out.print(oneFloat + " ");
+        for (int oneInt: myLinkedQueue) {
+            System.out.print(oneInt + " ");
         }
         System.out.println("\n");
     }
