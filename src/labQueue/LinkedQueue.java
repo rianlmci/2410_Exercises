@@ -87,11 +87,59 @@ public class LinkedQueue<E> implements Iterable<E> {
         StringBuilder sb = new StringBuilder();
         Node current = head;
         while(current != null){
-            sb.append(current.item + ", ");
+            sb.append(current.item).append( ", ");
             current = current.next;
         }
 
         return sb.substring(0, sb.length() - 2) + ".";
+    }
+
+    /**
+     * takes the first <code>count</code> elements from
+     * the queue and returns them in the order in
+     * which they were added to the queue.
+     * @param count
+     * @throws IllegalArgumentException if count is < 0 or count > size of queue.
+     * @return
+     */
+    public Iterable<E> take(int count){
+        if(count < 0){
+            throw new IllegalArgumentException("Count can't be negative.");
+        }
+        if(count > n){
+            throw new IllegalArgumentException("Count cannot be greater than the size.");
+        }
+        LinkedQueue<E> results = new LinkedQueue<>();
+        Node current = head;
+
+        for (int i = 0; i < count; i++) {
+          results.enqueue(current.item);
+          current = current.next;
+        }
+
+        return results;
+    }
+
+    public Iterable<E> takeLast(int count){
+        if(count < 0){
+            throw new IllegalArgumentException("Count can't be negative.");
+        }
+        if(count > n){
+            throw new IllegalArgumentException("Count cannot be greater than the size.");
+        }
+
+        LinkedQueue<E> results = new LinkedQueue<>();
+        Node current = head;
+
+        for (int i = 0; i < n-count; i++){
+            current = current.next;
+        }
+        for (int i = n-count; i < n; i++) {
+            results.enqueue(current.item);
+            current = current.next;
+        }
+
+        return results;
     }
 
     @Override
@@ -112,9 +160,7 @@ public class LinkedQueue<E> implements Iterable<E> {
             return next;
         }
     }
-
-    // = = = TEST CLIENT = = = //
-    public static void main(String [] args){
+    private static void testingFloat() {
         LinkedQueue <Float>myLinkedQueue = new LinkedQueue<>();
         myLinkedQueue.enqueue(1.1f);
         myLinkedQueue.enqueue(2.2f);
@@ -122,17 +168,36 @@ public class LinkedQueue<E> implements Iterable<E> {
         System.out.println("Starting queue: " + myLinkedQueue);
         System.out.println("Peek front: " + myLinkedQueue.peek());
         System.out.println("Dequeuing/Removing... " + myLinkedQueue.dequeue() + " ");
+        System.out.println("Updated queue: " + myLinkedQueue);
+        System.out.println("Updated size of list: " + myLinkedQueue.size());
         System.out.println("Adding 4.4 and 5.5...");
         myLinkedQueue.enqueue(4.4f);
         myLinkedQueue.enqueue(5.5f);
-        System.out.println("Updated size of list: " + myLinkedQueue.size());
         System.out.println("Updated queue: " + myLinkedQueue);
-
-        System.out.println("Testing iterator... ");
-
+        System.out.println("Updated size of list: " + myLinkedQueue.size());
+        System.out.println("Testing iterator on original linked queue... ");
         for (float oneFloat: myLinkedQueue) {
             System.out.print(oneFloat + " ");
         }
-        System.out.println("\n");
+        System.out.println("\nTesting iterator on take 1 queue... ");
+        LinkedQueue<Float> takeOne = (LinkedQueue<Float>) myLinkedQueue.take(1);
+        for (float oneFloat: takeOne) {
+                System.out.print(oneFloat + " ");
+        }
+        System.out.println("\nTesting iterator on take LAST 2 queue... ");
+        LinkedQueue<Float> takeTwo = (LinkedQueue<Float>) myLinkedQueue.takeLast(2);
+        for (float oneFloat: takeTwo) {
+            System.out.print(oneFloat + " ");
+        }
+        System.out.println("\nTesting iterator on take LAST 4 queue... ");
+        LinkedQueue<Float> takeFour = (LinkedQueue<Float>) myLinkedQueue.takeLast(4);
+        for (float oneFloat: takeFour) {
+            System.out.print(oneFloat + " ");
+        }
     }
+    // = = = TEST CLIENT = = = //
+    public static void main(String [] args){
+        testingFloat();
+    }
+
 }
